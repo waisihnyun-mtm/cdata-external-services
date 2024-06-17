@@ -26,6 +26,7 @@ public class MyAccConnection implements AccConnection {
             prop.setProperty("Logfile","value");
             prop.setProperty("Verbosity","value");
             prop.setProperty("MaxLogFileSize","value");
+//            prop.setProperty("LogModules","SSL");
 
             this.connection = DriverManager.getConnection("jdbc:salesforce:",prop);
         } catch (SQLException | ClassNotFoundException e) {

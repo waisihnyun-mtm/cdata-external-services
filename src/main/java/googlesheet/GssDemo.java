@@ -30,4 +30,25 @@ public class GssDemo {
         }
         return tables;
     }
+
+    private static List<String> getColumnNames(Connection conn, String table) throws SQLException {
+        DatabaseMetaData table_meta = conn.getMetaData();
+        ResultSet rs = table_meta.getColumns(null,null,table, null);
+        List<String> columns = new ArrayList<>();
+        while(rs.next()){
+            columns.add(rs.getString("COLUMN_NAME"));
+        }
+        return columns;
+    }
+
+    private static void printAllData(Connection conn, String table) throws SQLException {
+        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM `" + table + "`");
+        ResultSet rs = pstmt.executeQuery();
+        ResultSetMetaData rsmd = pstmt.getMetaData();
+        while (rs.next()) {
+            for(int i=1;i<=rsmd.getColumnCount();i++) {
+                System.out.println(rsmd.getColumnName(i) + " : " + rs.getString(i));
+            }
+        }
+    }
 }

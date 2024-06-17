@@ -26,9 +26,12 @@ public class MyAccConnection implements AccConnection {
             prop.setProperty("OAuthRefreshToken","value");
 
             // for logging
-//            prop.setProperty("Logfile","value");
-//            prop.setProperty("Verbosity","value");
-//            prop.setProperty("MaxLogFileSize","value");
+            prop.setProperty("Logfile","value");
+            prop.setProperty("Verbosity","value");
+            prop.setProperty("MaxLogFileSize","value");
+
+            // retry and waiting time
+//            prop.setProperty("Other", "RetryWaitTime=1;MaximumRequestRetries=1");
 
             this.connection = DriverManager.getConnection("jdbc:googlesheets:",prop);
         } catch (SQLException | ClassNotFoundException e) {
